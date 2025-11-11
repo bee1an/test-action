@@ -15,7 +15,7 @@ export async function getManifest() {
     description: pkg.description,
     applications: {
       gecko: {
-        update_url: `https://github.com/bee1an/test-action/releases/tag/v${pkg.version}/updates.xml`,
+        update_url: 'https://raw.githubusercontent.com/bee1an/test-action/refs/heads/main/updates.xml',
       },
     },
     action: {
