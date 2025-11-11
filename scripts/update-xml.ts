@@ -8,7 +8,6 @@ import process from 'node:process'
 const packageJsonPath = resolve(process.cwd(), 'package.json')
 const packageJson = JSON.parse(readFileSync(packageJsonPath, 'utf-8'))
 const version = packageJson.version
-console.log('version', version)
 
 // XML模板
 const xmlTemplate = `<?xml version='1.0' encoding='UTF-8'?>
@@ -17,6 +16,8 @@ const xmlTemplate = `<?xml version='1.0' encoding='UTF-8'?>
     <updatecheck codebase='https://github.com/bee1an/test-action/releases/download/v${version}/extension.zip' version='${version}' />
   </app>
 </gupdate>`
+
+console.log('xmlTemplate', xmlTemplate)
 
 // 写入updates.xml文件
 const updatesXmlPath = resolve(process.cwd(), 'updates.xml')
