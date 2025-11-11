@@ -66,6 +66,6 @@ jobs:
             ./extension.zip
             ./updates.xml
           # 确保 ZIP 文件的命名与 XML 中 codebase URL 保持一致
-          asset_name: extension-${{ github.ref_name }#v}.zip
+          asset_name: extension-${{ github.ref_name }}.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
