@@ -21,8 +21,6 @@ jobs:
         with:
           node-version: 18.20.2
           cache: pnpm
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
       - name: Install dependencies
         run: pnpm install
       - name: Build with VitePress
