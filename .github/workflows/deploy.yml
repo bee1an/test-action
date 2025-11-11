@@ -40,7 +40,7 @@ jobs:
 
           EXTENSION_ID="YOUR_EXTENSION_ID"
 
-          DOWNLOAD_URL="https://github.com/${{ github.repository }}/releases/download/${{ github.ref_name }}/extension-${CLEAN_VERSION}.zip"
+          DOWNLOAD_URL="https://github.com/${{ github.repository }}/releases/download/${{ github.ref_name }}/extension.zip"
 
           # 4. 生成 XML 内容并保存到 updates.xml
           echo "<?xml version='1.0' encoding='UTF-8'?>" > updates.xml
@@ -66,6 +66,6 @@ jobs:
             ./extension.zip
             ./updates.xml
           # 确保 ZIP 文件的命名与 XML 中 codebase URL 保持一致
-          asset_name: extension-${{ github.ref_name }}.zip
+          asset_name: extension.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
