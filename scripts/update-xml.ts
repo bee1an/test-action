@@ -17,10 +17,6 @@ const xmlTemplate = `<?xml version='1.0' encoding='UTF-8'?>
   </app>
 </gupdate>`
 
-console.log('xmlTemplate', xmlTemplate)
-
 // 写入updates.xml文件
 const updatesXmlPath = resolve(process.cwd(), 'updates.xml')
 writeFileSync(updatesXmlPath, xmlTemplate, 'utf-8')
-
-console.log(`✅ updates.xml已更新，版本: ${version}`)
