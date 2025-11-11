@@ -1,0 +1,50 @@
+name: Build and Release Chrome Extension
+
+on:
+  push:
+    tags:
+      - 'v*'  # 只在版本标签（如 v1.0.0）推送时触发工作流
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # 如果未启用 lastUpdated，则不需要
+      - uses: pnpm/action-setup@v3 
+        with:
+          version: 9.12.2
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18.20.2
+          cache: pnpm 
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+      - name: Install dependencies
+        run: pnpm install 
+      - name: Build with VitePress
+        run: pnpm run build 
+      - name: Create release zip
+        run: |
+          cd extension
+          zip -r ../extension.zip . 
+      - name: Create GitHub release
+        uses: gh-actions/create-release@v1
+        with:
+          tag_name: ${{ github.ref_name }}  # 使用 Git 标签作为版本号
+          release_name: 'v${{ github.ref_name }}'
+          body: 'Release for v${{ github.ref_name }}'
+          draft: false
+          prerelease: false
+          token: ${{ secrets.GITHUB_TOKEN }}  # 用 GitHub Token 来授权发布
+      - name: Upload release asset
+        uses: gh-actions/upload-release-asset@v1
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./extension.zip  # 这个路径是你打包后的插件文件
+          asset_name: extension-${{ github.ref_name }}.zip
+          asset_content_type: application/zip
+          token: ${{ secrets.GITHUB_TOKEN }}
