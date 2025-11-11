@@ -13,6 +13,11 @@ export async function getManifest() {
     name: pkg.displayName || pkg.name,
     version: pkg.version,
     description: pkg.description,
+    applications: {
+      gecko: {
+        update_url: `https://github.com/bee1an/test-action/releases/tag/v${pkg.version}/updates.xml`,
+      },
+    },
     action: {
       default_icon: 'assets/icon-512.png',
       default_popup: 'dist/popup/index.html',
