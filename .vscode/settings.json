@@ -1,0 +1,17 @@
+{
+  "cSpell.words": ["Vitesse"],
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "vite.autoStart": false,
+  "eslint.experimental.useFlatConfig": true,
+  "editor.formatOnSave": false,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "files.associations": {
+    "*.css": "postcss"
+  },
+  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.patterns": {
+    "AGENTS.md": "AGENTS.md, CLAUDE.md"
+  }
+}
